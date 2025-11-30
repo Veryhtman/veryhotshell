@@ -13,11 +13,11 @@ import QtQuick.Layouts
 StyledRect {
     id: root
 
-    property color colour: Colours.palette.m3secondary
+    property color colour: Config.style.statusIcons.mainColor
     readonly property alias items: iconColumn
 
-    color: Colours.tPalette.m3surfaceContainer
-    radius: Appearance.rounding.full
+    color: Config.style.statusIcons.containerColor
+    radius: Config.style.statusIcons.radius
 
     clip: true
     implicitWidth: Config.bar.sizes.innerWidth
@@ -136,7 +136,7 @@ StyledRect {
                 animate: true
                 text: Hypr.kbLayout
                 color: root.colour
-                font.family: Appearance.font.family.mono
+                font.family: Config.style.statusIcons.textFont
             }
         }
 
@@ -243,7 +243,7 @@ StyledRect {
                         level--;
                     return charging ? `battery_charging_${(level + 3) * 10}` : `battery_${level}_bar`;
                 }
-                color: !UPower.onBattery || UPower.displayDevice.percentage > 0.2 ? root.colour : Colours.palette.m3error
+                color: !UPower.onBattery || UPower.displayDevice.percentage > 0.2 ? root.colour : Config.style.statusIcons.batteryError
                 fill: 1
             }
         }

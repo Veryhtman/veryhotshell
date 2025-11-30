@@ -1,7 +1,6 @@
 pragma ComponentBehavior: Bound
 
 import qs.components
-import qs.services
 import qs.config
 import Quickshell.Services.UPower
 import QtQuick
@@ -48,8 +47,8 @@ Column {
             implicitWidth: child.implicitWidth + Appearance.padding.normal * 2
             implicitHeight: child.implicitHeight + Appearance.padding.smaller * 2
 
-            color: Colours.palette.m3error
-            radius: Appearance.rounding.normal
+            color: Config.style.battery.mainColor
+            radius: Config.style.battery.radius
 
             Column {
                 id: child
@@ -65,14 +64,14 @@ Column {
                         anchors.verticalCenterOffset: -font.pointSize / 10
 
                         text: "warning"
-                        color: Colours.palette.m3onError
+                        color: Config.style.battery.warningColor
                     }
 
                     StyledText {
                         anchors.verticalCenter: parent.verticalCenter
                         text: qsTr("Performance Degraded")
-                        color: Colours.palette.m3onError
-                        font.family: Appearance.font.family.mono
+                        color: Config.style.battery.errorColor
+                        font.family: Config.style.battery.textFont
                         font.weight: 500
                     }
 
@@ -81,7 +80,7 @@ Column {
                         anchors.verticalCenterOffset: -font.pointSize / 10
 
                         text: "warning"
-                        color: Colours.palette.m3onError
+                        color: Config.style.battery.warningColor
                     }
                 }
 
@@ -89,7 +88,7 @@ Column {
                     anchors.horizontalCenter: parent.horizontalCenter
 
                     text: qsTr("Reason: %1").arg(PerformanceDegradationReason.toString(PowerProfiles.degradationReason))
-                    color: Colours.palette.m3onError
+                    color: Config.style.battery.errorColor
                 }
             }
         }
@@ -112,14 +111,14 @@ Column {
         implicitWidth: saver.implicitHeight + balance.implicitHeight + perf.implicitHeight + Appearance.padding.normal * 2 + Appearance.spacing.large * 2
         implicitHeight: Math.max(saver.implicitHeight, balance.implicitHeight, perf.implicitHeight) + Appearance.padding.small * 2
 
-        color: Colours.tPalette.m3surfaceContainer
-        radius: Appearance.rounding.full
+        color: Config.style.battery.profileContainerColor
+        radius: Config.style.battery.profileContainerRadius
 
         StyledRect {
             id: indicator
 
-            color: Colours.palette.m3primary
-            radius: Appearance.rounding.full
+            color: Config.style.battery.profileIndicatorColor
+            radius: Config.style.battery.profileIndicatorRadius
             state: profiles.current
 
             states: [
@@ -205,8 +204,8 @@ Column {
         implicitHeight: icon.implicitHeight + Appearance.padding.small * 2
 
         StateLayer {
-            radius: Appearance.rounding.full
-            color: profiles.current === parent.icon ? Colours.palette.m3onPrimary : Colours.palette.m3onSurface
+            radius: Config.style.battery.profileContainerRadius
+            color: profiles.current === parent.icon ? Config.style.battery.profileContainerColor_2 : Config.style.battery.profileContainerColor_3
 
             function onClicked(): void {
                 PowerProfiles.profile = parent.profile;
@@ -219,8 +218,8 @@ Column {
             anchors.centerIn: parent
 
             text: parent.icon
-            font.pointSize: Appearance.font.size.large
-            color: profiles.current === text ? Colours.palette.m3onPrimary : Colours.palette.m3onSurface
+            font.pointSize: CConfig.style.battery.profileFontSize
+            color: profiles.current === text ? Config.style.battery.profileContainerColor_2 : Config.style.battery.profileContainerColor_3
             fill: profiles.current === text ? 1 : 0
 
             Behavior on fill {

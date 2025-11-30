@@ -45,14 +45,14 @@ Item {
                 StyledText {
                     Layout.fillWidth: true
                     text: Hypr.activeToplevel?.title ?? ""
-                    font.pointSize: Appearance.font.size.normal
+                    font.pointSize: Config.style.activeWindow.detailTextFont
                     elide: Text.ElideRight
                 }
 
                 StyledText {
                     Layout.fillWidth: true
                     text: Hypr.activeToplevel?.lastIpcObject.class ?? ""
-                    color: Colours.palette.m3onSurfaceVariant
+                    color: Config.style.activeWindow.textColor
                     elide: Text.ElideRight
                 }
             }
@@ -64,7 +64,7 @@ Item {
                 Layout.alignment: Qt.AlignVCenter
 
                 StateLayer {
-                    radius: Appearance.rounding.normal
+                    radius: Config.style.activeWindow.stateRadius
 
                     function onClicked(): void {
                         root.wrapper.detach("winfo");
@@ -79,7 +79,7 @@ Item {
 
                     text: "chevron_right"
 
-                    font.pointSize: Appearance.font.size.large
+                    font.pointSize: Config.style.activeWindow.chevronSize
                 }
             }
         }

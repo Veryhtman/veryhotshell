@@ -2,7 +2,6 @@ pragma ComponentBehavior: Bound
 
 import qs.components
 import qs.components.controls
-import qs.services
 import qs.config
 import Quickshell
 import QtQuick
@@ -58,7 +57,7 @@ Item {
             topLeftRadius: root.rounding
             bottomLeftRadius: root.rounding
             implicitWidth: navRail.implicitWidth
-            color: Colours.tPalette.m3surfaceContainer
+            color: Config.style.controlCenter.containerColor
 
             CustomMouseArea {
                 anchors.fill: parent

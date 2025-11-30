@@ -2,7 +2,7 @@ import Quickshell.Io
 
 JsonObject {
     property bool enabled: true
-    property bool showOnHover: false
+    property bool showOnHover: true
     property int maxShown: 7
     property int maxWallpapers: 9 // Warning: even numbers look bad
     property string specialPrefix: "@"
@@ -15,11 +15,11 @@ JsonObject {
     property Sizes sizes: Sizes {}
 
     component UseFuzzy: JsonObject {
-        property bool apps: false
+        property bool apps: true
         property bool actions: false
         property bool schemes: false
         property bool variants: false
-        property bool wallpapers: false
+        property bool wallpapers: true
     }
 
     component Sizes: JsonObject {
@@ -67,7 +67,7 @@ JsonObject {
             icon: "opacity",
             description: "Change shell transparency",
             command: ["autocomplete", "transparency"],
-            enabled: false,
+            enabled: true,
             dangerous: false
         },
         {

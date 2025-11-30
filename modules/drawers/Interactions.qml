@@ -12,6 +12,7 @@ CustomMouseArea {
     required property PersistentProperties visibilities
     required property Panels panels
     required property Item bar
+    required property Item topbar
 
     property point dragStart
     property bool dashboardShortcutActive
@@ -48,6 +49,10 @@ CustomMouseArea {
         if (event.x < bar.implicitWidth) {
             bar.handleWheel(event.y, event.angleDelta);
         }
+        // --- TOPBAR wheel support ---
+        if (event.y < topbar.implicitHeight) {
+            topbar.handleWheel?.(event.x, event.angleDelta);
+        }
     }
 
     anchors.fill: parent
@@ -75,6 +80,9 @@ CustomMouseArea {
 
             if (Config.bar.showOnHover)
                 bar.isHovered = false;
+
+            if (Config.topbar.showOnHover)
+                topbar.isHovered = false;
         }
     }
 
@@ -86,6 +94,12 @@ CustomMouseArea {
         const y = event.y;
         const dragX = x - dragStart.x;
         const dragY = y - dragStart.y;
+
+        // --- TOPBAR hover detection ---
+        if (!visibilities.topbar && Config.topbar.showOnHover && y < topbar.implicitHeight)
+            topbar.isHovered = true;
+        else if (y >= topbar.implicitHeight)
+            topbar.isHovered = false;
 
         // Show bar in non-exclusive mode on hover
         if (!visibilities.bar && Config.bar.showOnHover && x < bar.implicitWidth)

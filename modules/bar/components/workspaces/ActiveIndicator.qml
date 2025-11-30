@@ -1,6 +1,5 @@
 import qs.components
 import qs.components.effects
-import qs.services
 import qs.config
 import QtQuick
 
@@ -44,13 +43,13 @@ StyledRect {
     y: offset + mask.y
     implicitWidth: Config.bar.sizes.innerWidth - Appearance.padding.small * 2
     implicitHeight: size
-    radius: Appearance.rounding.full
-    color: Colours.palette.m3primary
+    radius: Config.style.workspaces.activeRadius
+    color: Config.style.workspaces.activeColor
 
     Colouriser {
         source: root.mask
-        sourceColor: Colours.palette.m3onSurface
-        colorizationColor: Colours.palette.m3onPrimary
+        sourceColor: Config.style.workspaces.colouriserSourceColor
+        colorizationColor: Config.style.workspaces.colouriserEndColor
 
         x: 0
         y: -parent.offset

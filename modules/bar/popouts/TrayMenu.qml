@@ -75,8 +75,8 @@ StackView {
                 implicitWidth: Config.bar.sizes.trayMenuWidth
                 implicitHeight: modelData.isSeparator ? 1 : children.implicitHeight
 
-                radius: Appearance.rounding.full
-                color: modelData.isSeparator ? Colours.palette.m3outlineVariant : "transparent"
+                radius: Config.style.trayMenu.containerRadius
+                color: modelData.isSeparator ? Config.style.trayMenu.containerBackgroundColor : Config.style.trayMenu.containerEmptyBackgroundColor
 
                 Loader {
                     id: children
@@ -134,7 +134,7 @@ StackView {
                             anchors.leftMargin: icon.active ? Appearance.spacing.smaller : 0
 
                             text: labelMetrics.elidedText
-                            color: item.modelData.enabled ? Colours.palette.m3onSurface : Colours.palette.m3outline
+                            color: item.modelData.enabled ? Config.style.trayMenu.textActiveColor : Config.style.trayMenu.textInactiveColor
                         }
 
                         TextMetrics {
@@ -159,7 +159,7 @@ StackView {
 
                             sourceComponent: MaterialIcon {
                                 text: "chevron_right"
-                                color: item.modelData.enabled ? Colours.palette.m3onSurface : Colours.palette.m3outline
+                                color: item.modelData.enabled ? Config.style.trayMenu.expandTextActiveColor : Config.style.trayMenu.expandTextInactiveColor
                             }
                         }
                     }
@@ -186,12 +186,12 @@ StackView {
                         anchors.leftMargin: -Appearance.padding.smaller
                         anchors.rightMargin: -Appearance.padding.smaller * 2
 
-                        radius: Appearance.rounding.full
-                        color: Colours.palette.m3secondaryContainer
+                        radius: Config.style.trayMenu.submenuRadius
+                        color: Config.style.trayMenu.submenuColor
 
                         StateLayer {
                             radius: parent.radius
-                            color: Colours.palette.m3onSecondaryContainer
+                            color: CConfig.style.trayMenu.submenuBackgroundColor
 
                             function onClicked(): void {
                                 root.pop();
@@ -207,13 +207,13 @@ StackView {
                         MaterialIcon {
                             anchors.verticalCenter: parent.verticalCenter
                             text: "chevron_left"
-                            color: Colours.palette.m3onSecondaryContainer
+                            color: Config.style.trayMenu.submenuTextColor
                         }
 
                         StyledText {
                             anchors.verticalCenter: parent.verticalCenter
                             text: qsTr("Back")
-                            color: Colours.palette.m3onSecondaryContainer
+                            color: Config.style.trayMenu.submenuTextColor
                         }
                     }
                 }

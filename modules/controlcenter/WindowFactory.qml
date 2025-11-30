@@ -2,6 +2,7 @@ pragma Singleton
 
 import qs.components
 import qs.services
+import qs.config
 import Quickshell
 import QtQuick
 
@@ -25,7 +26,7 @@ Singleton {
             property alias active: cc.active
             property alias navExpanded: cc.navExpanded
 
-            color: Colours.tPalette.m3surface
+            color: Config.style.windowFactory.mainColor
 
             onVisibleChanged: {
                 if (!visible)
@@ -38,7 +39,7 @@ Singleton {
             implicitWidth: cc.implicitWidth
             implicitHeight: cc.implicitHeight
 
-            title: qsTr("Caelestia Settings - %1").arg(cc.active.slice(0, 1).toUpperCase() + cc.active.slice(1))
+            title:  qsTr(Config.style.windowFactory.titleFormat).arg(Config.style.windowFactory.titleString).arg(cc.active.slice(0, 1).toUpperCase() + cc.active.slice(1))
 
             ControlCenter {
                 id: cc

@@ -11,7 +11,7 @@ StyledRect {
     required property Session session
 
     implicitHeight: text.implicitHeight + Appearance.padding.normal
-    color: Colours.tPalette.m3surfaceContainer
+    color: Config.style.windowFactory.containerColor
 
     StyledText {
         id: text
@@ -19,9 +19,9 @@ StyledRect {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
 
-        text: qsTr("Caelestia Settings - %1").arg(root.session.active)
+        text: qsTr(Config.style.windowFactory.titleFormat).arg(Config.style.windowFactory.titleString).arg(root.session.active)
         font.capitalization: Font.Capitalize
-        font.pointSize: Appearance.font.size.larger
+        font.pointSize: Config.style.windowFactory.titleSize
         font.weight: 500
     }
 
@@ -34,7 +34,7 @@ StyledRect {
         implicitHeight: closeIcon.implicitHeight + Appearance.padding.small
 
         StateLayer {
-            radius: Appearance.rounding.full
+            radius: Config.style.windowFactory.containerRadius
 
             function onClicked(): void {
                 QsWindow.window.destroy();

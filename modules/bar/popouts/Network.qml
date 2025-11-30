@@ -34,8 +34,8 @@ ColumnLayout {
         Layout.topMargin: Appearance.spacing.small
         Layout.rightMargin: Appearance.padding.small
         text: qsTr("%1 networks available").arg(Network.networks.length)
-        color: Colours.palette.m3onSurfaceVariant
-        font.pointSize: Appearance.font.size.small
+        color: Config.style.network.textColor
+        font.pointSize: Config.style.network.textSize
     }
 
     Repeater {
@@ -76,13 +76,13 @@ ColumnLayout {
 
             MaterialIcon {
                 text: Icons.getNetworkIcon(networkItem.modelData.strength)
-                color: networkItem.modelData.active ? Colours.palette.m3primary : Colours.palette.m3onSurfaceVariant
+                color: networkItem.modelData.active ? Config.style.network.activeColor : Config.style.network.inactiveColor
             }
 
             MaterialIcon {
                 visible: networkItem.modelData.isSecure
                 text: "lock"
-                font.pointSize: Appearance.font.size.small
+                font.pointSize: Config.style.network.itemTextSize
             }
 
             StyledText {
@@ -92,7 +92,7 @@ ColumnLayout {
                 text: networkItem.modelData.ssid
                 elide: Text.ElideRight
                 font.weight: networkItem.modelData.active ? 500 : 400
-                color: networkItem.modelData.active ? Colours.palette.m3primary : Colours.palette.m3onSurface
+                color: networkItem.modelData.active ? Config.style.network.activeColor : Config.style.network.inactiveColor
             }
 
             StyledRect {
@@ -102,7 +102,7 @@ ColumnLayout {
                 implicitHeight: connectIcon.implicitHeight + Appearance.padding.small
 
                 radius: Appearance.rounding.full
-                color: Qt.alpha(Colours.palette.m3primary, networkItem.modelData.active ? 1 : 0)
+                color: Qt.alpha(Config.style.network.activeColor, networkItem.modelData.active ? 1 : 0)
 
                 CircularIndicator {
                     anchors.fill: parent
@@ -110,7 +110,7 @@ ColumnLayout {
                 }
 
                 StateLayer {
-                    color: networkItem.modelData.active ? Colours.palette.m3onPrimary : Colours.palette.m3onSurface
+                    color: networkItem.modelData.active ? Config.style.network.buttonActiveColor : Config.style.network.buttonInactiveColor
                     disabled: networkItem.loading || !Network.wifiEnabled
 
                     function onClicked(): void {
@@ -129,7 +129,7 @@ ColumnLayout {
                     anchors.centerIn: parent
                     animate: true
                     text: networkItem.modelData.active ? "link_off" : "link"
-                    color: networkItem.modelData.active ? Colours.palette.m3onPrimary : Colours.palette.m3onSurface
+                    color: networkItem.modelData.active ? Config.style.network.buttonActiveColor : Config.style.network.buttonInactiveColor
 
                     opacity: networkItem.loading ? 0 : 1
 
@@ -146,11 +146,11 @@ ColumnLayout {
         Layout.fillWidth: true
         implicitHeight: rescanBtn.implicitHeight + Appearance.padding.small * 2
 
-        radius: Appearance.rounding.full
-        color: Colours.palette.m3primaryContainer
+        radius: Config.style.network.containerRadius
+        color: Config.style.network.containerColor
 
         StateLayer {
-            color: Colours.palette.m3onPrimaryContainer
+            color: Config.style.network.containerBackground
             disabled: Network.scanning || !Network.wifiEnabled
 
             function onClicked(): void {
@@ -170,12 +170,12 @@ ColumnLayout {
 
                 animate: true
                 text: "wifi_find"
-                color: Colours.palette.m3onPrimaryContainer
+                color: Config.style.network.itemTextColor
             }
 
             StyledText {
                 text: qsTr("Rescan networks")
-                color: Colours.palette.m3onPrimaryContainer
+                color: Config.style.network.itemTextColor
             }
 
             Behavior on opacity {

@@ -10,6 +10,7 @@ Scope {
 
     required property ShellScreen screen
     required property Item bar
+    required property Item topbar
 
     ExclusionZone {
         anchors.left: true
@@ -18,7 +19,12 @@ Scope {
 
     ExclusionZone {
         anchors.top: true
+        exclusiveZone: root.topbar.exclusiveZone
     }
+
+    //ExclusionZone {
+    //    anchors.top: true
+    //}
 
     ExclusionZone {
         anchors.right: true

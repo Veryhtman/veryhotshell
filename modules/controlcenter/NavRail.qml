@@ -1,7 +1,6 @@
 pragma ComponentBehavior: Bound
 
 import qs.components
-import qs.services
 import qs.config
 import Quickshell
 import QtQuick
@@ -51,7 +50,7 @@ Item {
             implicitHeight: menuIcon.implicitHeight + Appearance.padding.normal * 2
 
             StateLayer {
-                radius: Appearance.rounding.small
+                radius: Config.style.navRail.containerRadius
 
                 function onClicked(): void {
                     root.session.navExpanded = !root.session.navExpanded;
@@ -66,7 +65,7 @@ Item {
                 anchors.leftMargin: Appearance.padding.large
 
                 text: "menu"
-                font.pointSize: Appearance.font.size.large
+                font.pointSize: Config.style.navRail.textSize
             }
 
             MaterialIcon {
@@ -91,13 +90,13 @@ Item {
                 implicitWidth: nonAnimWidth
                 implicitHeight: root.session.navExpanded ? normalWinIcon.implicitHeight + Appearance.padding.normal * 2 : nonAnimWidth
 
-                color: Colours.palette.m3primaryContainer
-                radius: Appearance.rounding.small
+                color: Config.style.navRail.containerColor
+                radius: Config.style.navRail.containerRadius
 
                 StateLayer {
                     id: normalWinState
 
-                    color: Colours.palette.m3onPrimaryContainer
+                    color: Config.style.navRail.containerBackgroundColor
 
                     function onClicked(): void {
                         root.session.root.close();
@@ -117,8 +116,8 @@ Item {
                     anchors.leftMargin: Appearance.padding.large
 
                     text: "select_window"
-                    color: Colours.palette.m3onPrimaryContainer
-                    font.pointSize: Appearance.font.size.large
+                    color: Config.style.navRail.textColor
+                    font.pointSize: Config.style.navRail.textSize
                     fill: 1
                 }
 
@@ -130,7 +129,7 @@ Item {
                     anchors.leftMargin: Appearance.spacing.normal
 
                     text: qsTr("Float window")
-                    color: Colours.palette.m3onPrimaryContainer
+                    color: Config.style.navRail.textColor
                     opacity: root.session.navExpanded ? 1 : 0
 
                     Behavior on opacity {
@@ -212,14 +211,14 @@ Item {
         StyledRect {
             id: background
 
-            radius: Appearance.rounding.full
-            color: Qt.alpha(Colours.palette.m3secondaryContainer, item.active ? 1 : 0)
+            radius: Config.style.navRail.backgroundRadius
+            color: Qt.alpha(Config.style.navRail.backgroundColor, item.active ? 1 : 0)
 
             implicitWidth: icon.implicitWidth + icon.anchors.leftMargin * 2
             implicitHeight: icon.implicitHeight + Appearance.padding.small
 
             StateLayer {
-                color: item.active ? Colours.palette.m3onSecondaryContainer : Colours.palette.m3onSurface
+                color: item.active ? Config.style.navRail.itemActive : Config.style.navRail.itemInactive
 
                 function onClicked(): void {
                     root.session.active = item.label;
@@ -234,8 +233,8 @@ Item {
                 anchors.leftMargin: Appearance.padding.large
 
                 text: item.icon
-                color: item.active ? Colours.palette.m3onSecondaryContainer : Colours.palette.m3onSurface
-                font.pointSize: Appearance.font.size.large
+                color: item.active ? Config.style.navRail.itemActive : Config.style.navRail.itemInactive
+                font.pointSize: Config.style.navRail.textSize
                 fill: item.active ? 1 : 0
 
                 Behavior on fill {
@@ -252,7 +251,7 @@ Item {
 
                 opacity: 0
                 text: item.label
-                color: item.active ? Colours.palette.m3onSecondaryContainer : Colours.palette.m3onSurface
+                color: item.active ? Config.style.navRail.itemActive : Config.style.navRail.itemInactive
                 font.capitalization: Font.Capitalize
             }
 
@@ -264,7 +263,7 @@ Item {
                 anchors.topMargin: Appearance.spacing.small / 2
 
                 text: item.label
-                font.pointSize: Appearance.font.size.small
+                font.pointSize: Config.style.navRail.itemLabelSize
                 font.capitalization: Font.Capitalize
             }
         }

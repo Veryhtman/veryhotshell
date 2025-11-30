@@ -10,6 +10,7 @@ Item {
     id: root
 
     required property Item bar
+    required property Item topbar
 
     anchors.fill: parent
 
@@ -38,6 +39,7 @@ Item {
             anchors.fill: parent
             anchors.margins: Config.border.thickness
             anchors.leftMargin: root.bar.implicitWidth
+            anchors.topMargin: Config.border.thickness + root.topbar.implicitHeight // <-- décale sous la topbar
             radius: Config.border.rounding
         }
     }

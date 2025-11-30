@@ -30,8 +30,8 @@ StyledRect {
     implicitWidth: Config.bar.sizes.innerWidth
     implicitHeight: nonAnimHeight
 
-    color: Qt.alpha(Colours.tPalette.m3surfaceContainer, Config.bar.tray.background ? Colours.tPalette.m3surfaceContainer.a : 0)
-    radius: Appearance.rounding.full
+    color: Qt.alpha(Config.style.tray.containerColor, Config.bar.tray.background ? Config.style.tray.containerColor_A : 0)
+    radius: Config.style.tray.radius
 
     Column {
         id: layout
@@ -95,7 +95,7 @@ StyledRect {
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: Config.bar.tray.background ? Appearance.padding.small : -Appearance.padding.small
                 text: "expand_less"
-                font.pointSize: Appearance.font.size.large
+                font.pointSize: Config.style.tray.textSize
                 rotation: root.expanded ? 180 : 0
 
                 Behavior on rotation {

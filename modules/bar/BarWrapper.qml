@@ -42,6 +42,10 @@ Item {
         PropertyChanges {
             root.implicitWidth: root.contentWidth
         }
+
+        onCompleted: {
+            console.log("State 'visible' activated");
+        }
     }
 
     transitions: [
@@ -55,6 +59,15 @@ Item {
                 duration: Appearance.anim.durations.expressiveDefaultSpatial
                 easing.bezierCurve: Appearance.anim.curves.expressiveDefaultSpatial
             }
+
+            onRunningChanged: {
+                if (running) {
+                    console.log("Transition to 'visible' started");
+                } else {
+                    console.log("Transition to 'visible' finished");
+                }
+            }
+
         },
         Transition {
             from: "visible"

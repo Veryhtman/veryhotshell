@@ -8,10 +8,12 @@ import Quickshell.Io
 Singleton {
     id: root
 
+    property alias style: adapter.style
     property alias appearance: adapter.appearance
     property alias general: adapter.general
     property alias background: adapter.background
     property alias bar: adapter.bar
+    property alias topbar: adapter.topbar
     property alias border: adapter.border
     property alias dashboard: adapter.dashboard
     property alias controlCenter: adapter.controlCenter
@@ -55,10 +57,12 @@ Singleton {
         JsonAdapter {
             id: adapter
 
+            property StyleConfig style: StyleConfig {}
             property AppearanceConfig appearance: AppearanceConfig {}
             property GeneralConfig general: GeneralConfig {}
             property BackgroundConfig background: BackgroundConfig {}
             property BarConfig bar: BarConfig {}
+            property TopbarConfig topbar: TopbarConfig {}
             property BorderConfig border: BorderConfig {}
             property DashboardConfig dashboard: DashboardConfig {}
             property ControlCenterConfig controlCenter: ControlCenterConfig {}

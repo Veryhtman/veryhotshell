@@ -51,7 +51,7 @@ CustomMouseArea {
                 StateLayer {
                     id: prevMonthStateLayer
 
-                    radius: Appearance.rounding.full
+                    radius: Config.style.calendar.chevronRadius
 
                     function onClicked(): void {
                         root.state.currentDate = new Date(root.currYear, root.currMonth - 1, 1);
@@ -63,8 +63,8 @@ CustomMouseArea {
 
                     anchors.centerIn: parent
                     text: "chevron_left"
-                    color: Colours.palette.m3tertiary
-                    font.pointSize: Appearance.font.size.normal
+                    color: Config.style.calendar.chevronTextColor
+                    font.pointSize: Config.style.calendar.chevronTextSize
                     font.weight: 700
                 }
             }
@@ -81,7 +81,7 @@ CustomMouseArea {
                     anchors.leftMargin: -Appearance.padding.normal
                     anchors.rightMargin: -Appearance.padding.normal
 
-                    radius: Appearance.rounding.full
+                    radius: Config.style.calendar.monthYearDisplayRadius
                     disabled: {
                         const now = new Date();
                         return root.currMonth === now.getMonth() && root.currYear === now.getFullYear();
@@ -97,8 +97,8 @@ CustomMouseArea {
 
                     anchors.centerIn: parent
                     text: grid.title
-                    color: Colours.palette.m3primary
-                    font.pointSize: Appearance.font.size.normal
+                    color: Config.style.calendar.monthYearDisplayTextColor
+                    font.pointSize: Config.style.calendar.monthYearDisplayTextSize
                     font.weight: 500
                     font.capitalization: Font.Capitalize
                 }
@@ -111,7 +111,7 @@ CustomMouseArea {
                 StateLayer {
                     id: nextMonthStateLayer
 
-                    radius: Appearance.rounding.full
+                    radius: Config.style.calendar.chevronRadius
 
                     function onClicked(): void {
                         root.state.currentDate = new Date(root.currYear, root.currMonth + 1, 1);
@@ -123,8 +123,8 @@ CustomMouseArea {
 
                     anchors.centerIn: parent
                     text: "chevron_right"
-                    color: Colours.palette.m3tertiary
-                    font.pointSize: Appearance.font.size.normal
+                    color: Config.style.calendar.chevronTextColor
+                    font.pointSize: Config.style.calendar.chevronTextSize
                     font.weight: 700
                 }
             }
@@ -142,7 +142,7 @@ CustomMouseArea {
                 horizontalAlignment: Text.AlignHCenter
                 text: model.shortName
                 font.weight: 500
-                color: (model.day === 0 || model.day === 6) ? Colours.palette.m3secondary : Colours.palette.m3onSurfaceVariant
+                color: (model.day === 0 || model.day === 6) ? Config.style.calendar.dayOfWeekendTextColor : Config.style.calendar.dayOfWeekTextColor
             }
         }
 
@@ -179,12 +179,12 @@ CustomMouseArea {
                         color: {
                             const dayOfWeek = dayItem.model.date.getUTCDay();
                             if (dayOfWeek === 0 || dayOfWeek === 6)
-                                return Colours.palette.m3secondary;
+                                return Config.style.calendar.dayOfWeekendTextColor;
 
-                            return Colours.palette.m3onSurfaceVariant;
+                            return Config.style.calendar.dayOfWeekTextColor;
                         }
                         opacity: dayItem.model.today || dayItem.model.month === grid.month ? 1 : 0.4
-                        font.pointSize: Appearance.font.size.normal
+                        font.pointSize: Config.style.calendar.daysTextSize
                         font.weight: 500
                     }
                 }
@@ -208,8 +208,8 @@ CustomMouseArea {
                 implicitHeight: today?.implicitHeight ?? 0
 
                 clip: true
-                radius: Appearance.rounding.full
-                color: Colours.palette.m3primary
+                radius: Config.style.calendar.todayIndicatorRadius
+                color: Config.style.calendar.todayIndicatorColor
 
                 opacity: todayItem ? 1 : 0
                 scale: todayItem ? 1 : 0.7
@@ -222,8 +222,8 @@ CustomMouseArea {
                     implicitHeight: grid.height
 
                     source: grid
-                    sourceColor: Colours.palette.m3onSurface
-                    colorizationColor: Colours.palette.m3onPrimary
+                    sourceColor: Config.style.calendar.todayColoriserSource
+                    colorizationColor: Config.style.calendar.todayColoriserEnd
                 }
 
                 Behavior on opacity {

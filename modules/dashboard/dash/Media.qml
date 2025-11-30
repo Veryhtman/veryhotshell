@@ -41,7 +41,7 @@ Item {
 
         ShapePath {
             fillColor: "transparent"
-            strokeColor: Colours.layer(Colours.palette.m3surfaceContainerHigh, 2)
+            strokeColor: Colours.layer(Config.style.media.dash_strokeColor, 2)
             strokeWidth: Config.dashboard.sizes.mediaProgressThickness
             capStyle: Appearance.rounding.scale === 0 ? ShapePath.SquareCap : ShapePath.RoundCap
 
@@ -61,7 +61,7 @@ Item {
 
         ShapePath {
             fillColor: "transparent"
-            strokeColor: Colours.palette.m3primary
+            strokeColor: Config.style.media.dash_strokeHoverColor
             strokeWidth: Config.dashboard.sizes.mediaProgressThickness
             capStyle: Appearance.rounding.scale === 0 ? ShapePath.SquareCap : ShapePath.RoundCap
 
@@ -89,7 +89,7 @@ Item {
         anchors.margins: Appearance.padding.large + Config.dashboard.sizes.mediaProgressThickness + Appearance.spacing.small
 
         implicitHeight: width
-        color: Colours.tPalette.m3surfaceContainerHigh
+        color: Config.style.media.dash_artTrackContainerColor
         radius: Infinity
 
         MaterialIcon {
@@ -97,7 +97,7 @@ Item {
 
             grade: 200
             text: "art_track"
-            color: Colours.palette.m3onSurfaceVariant
+            color: Config.style.media.dash_artTrackTextColor
             font.pointSize: (parent.width * 0.4) || 1
         }
 
@@ -124,8 +124,8 @@ Item {
         animate: true
         horizontalAlignment: Text.AlignHCenter
         text: (Players.active?.trackTitle ?? qsTr("No media")) || qsTr("Unknown title")
-        color: Colours.palette.m3primary
-        font.pointSize: Appearance.font.size.normal
+        color: Config.style.media.dash_titleTextColor
+        font.pointSize: Config.style.media.dash_titleTextSize
 
         width: parent.implicitWidth - Appearance.padding.large * 2
         elide: Text.ElideRight
@@ -141,8 +141,8 @@ Item {
         animate: true
         horizontalAlignment: Text.AlignHCenter
         text: (Players.active?.trackAlbum ?? qsTr("No media")) || qsTr("Unknown album")
-        color: Colours.palette.m3outline
-        font.pointSize: Appearance.font.size.small
+        color: Config.style.media.dash_albumTextColor
+        font.pointSize: Config.style.media.dash_albumTextSize
 
         width: parent.implicitWidth - Appearance.padding.large * 2
         elide: Text.ElideRight
@@ -158,7 +158,7 @@ Item {
         animate: true
         horizontalAlignment: Text.AlignHCenter
         text: (Players.active?.trackArtist ?? qsTr("No media")) || qsTr("Unknown artist")
-        color: Colours.palette.m3secondary
+        color: Config.style.media.dash_artistTextColor
 
         width: parent.implicitWidth - Appearance.padding.large * 2
         elide: Text.ElideRight
@@ -232,7 +232,7 @@ Item {
 
         StateLayer {
             disabled: !control.canUse
-            radius: Appearance.rounding.full
+            radius: Config.style.media.dash_iconRadius
 
             function onClicked(): void {
                 control.onClicked();
@@ -247,8 +247,8 @@ Item {
 
             animate: true
             text: control.icon
-            color: control.canUse ? Colours.palette.m3onSurface : Colours.palette.m3outline
-            font.pointSize: Appearance.font.size.large
+            color: control.canUse ? Config.style.media.dash_iconActiveColor : Config.style.media.dash_iconInactiveColor
+            font.pointSize: Config.style.media.dash_iconSize
         }
     }
 }

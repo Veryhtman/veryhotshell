@@ -20,19 +20,19 @@ Row {
     Resource {
         icon: "memory"
         value: SystemUsage.cpuPerc
-        colour: Colours.palette.m3primary
+        colour: Config.style.ressources.dash_cpuColor
     }
 
     Resource {
         icon: "memory_alt"
         value: SystemUsage.memPerc
-        colour: Colours.palette.m3secondary
+        colour: Config.style.ressources.dash_memoryColor
     }
 
     Resource {
         icon: "hard_disk"
         value: SystemUsage.storagePerc
-        colour: Colours.palette.m3tertiary
+        colour: Config.style.ressources.dash_diskColor
     }
 
     component Resource: Item {
@@ -55,8 +55,8 @@ Row {
 
             implicitWidth: Config.dashboard.sizes.resourceProgessThickness
 
-            color: Colours.layer(Colours.palette.m3surfaceContainerHigh, 2)
-            radius: Appearance.rounding.full
+            color: Colours.layer(Config.style.ressources.dash_barsColor, 2)
+            radius: Config.style.ressources.dash_barsRadius
 
             StyledRect {
                 anchors.left: parent.left
@@ -65,7 +65,7 @@ Row {
                 implicitHeight: res.value * parent.height
 
                 color: res.colour
-                radius: Appearance.rounding.full
+                radius: Config.style.ressources.dash_barsRadius
             }
         }
 

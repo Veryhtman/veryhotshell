@@ -208,8 +208,8 @@ MouseArea {
         id: overlay
 
         anchors.fill: parent
-        color: Colours.palette.m3secondaryContainer
-        opacity: 0.3
+        color: Config.style.picker.overlayColor
+        opacity: Config.style.picker.overlayOpacity
 
         layer.enabled: true
         layer.effect: MultiEffect {
@@ -245,7 +245,7 @@ MouseArea {
         color: "transparent"
         radius: root.realRounding > 0 ? root.realRounding + root.realBorderWidth : 0
         border.width: root.realBorderWidth
-        border.color: Colours.palette.m3primary
+        border.color: Config.style.picker.borderColor
 
         x: selectionRect.x - root.realBorderWidth
         y: selectionRect.y - root.realBorderWidth

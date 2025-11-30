@@ -2,13 +2,13 @@ import Quickshell.Io
 import QtQuick
 
 JsonObject {
-    property string weatherLocation: "" // A lat,long pair or empty for autodetection, e.g. "37.8267,-122.4233"
+    property string weatherLocation: "43.4833, 5.2333 " // A lat,long pair or empty for autodetection, e.g. "37.8267,-122.4233"
     property bool useFahrenheit: [Locale.ImperialUSSystem, Locale.ImperialSystem].includes(Qt.locale().measurementSystem)
     property bool useTwelveHourClock: Qt.locale().timeFormat(Locale.ShortFormat).toLowerCase().includes("a")
     property string gpuType: ""
     property int visualiserBars: 45
     property real audioIncrement: 0.1
-    property real maxVolume: 1.0
+    property real maxVolume: 1.5
     property bool smartScheme: true
     property string defaultPlayer: "Spotify"
     property list<var> playerAliases: [

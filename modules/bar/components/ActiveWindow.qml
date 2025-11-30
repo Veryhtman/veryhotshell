@@ -11,7 +11,7 @@ Item {
 
     required property var bar
     required property Brightness.Monitor monitor
-    property color colour: Colours.palette.m3primary
+    property color colour: Config.style.activeWindow.activeColor
 
     readonly property int maxHeight: {
         const otherModules = bar.children.filter(c => c.id && c.item !== this && c.id !== "spacer");
@@ -47,8 +47,8 @@ Item {
         id: metrics
 
         text: Hypr.activeToplevel?.title ?? qsTr("Desktop")
-        font.pointSize: Appearance.font.size.smaller
-        font.family: Appearance.font.family.mono
+        font.pointSize: Config.style.activeWindow.textSize
+        font.family: Config.style.activeWindow.textFont
         elide: Qt.ElideRight
         elideWidth: root.maxHeight - icon.height
 

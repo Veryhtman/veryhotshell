@@ -149,9 +149,40 @@ ColumnLayout {
             DelegateChoice {
                 roleValue: "clock"
                 delegate: WrappedLoader {
-                    sourceComponent: Clock {}
+                    //enabled: enabled && Config.bar.clock.showLeft
+                    Component.onCompleted: {
+                        console.log("");
+                        console.log("╔════════════════════════════════════════════════════════╗");
+                        console.log("║             BAR CLOCK LOADER                           ║");
+                        console.log("╚════════════════════════════════════════════════════════╝");
+                        console.log("🕐 Clock delegate in Bar - enabled:", enabled, "showLeft:", Config.bar.clock.showLeft, "FINAL enabled:", enabled && Config.bar.clock.showLeft);
+                        console.log("   enabled from model:", enabled);
+                        console.log("   Config.bar.clock.showLeft:", Config.bar.clock.showLeft);
+                        console.log("   status:", status, "(1=Ready, 2=Loading, 3=Error)");
+                        console.log("   Should show:", enabled && Config.bar.clock.showLeft);
+                        console.log("════════════════════════════════════════════════════════");
+                    }
+                    visible: enabled && Config.bar.clock.showLeft
+                    active: enabled && Config.bar.clock.showLeft
+                    sourceComponent: Clock {
+                        displayMode: "vertical"
+                    }
+
+                    onActiveChanged: {
+                        console.log("🕐 Bar clock enabled changed to:", enabled);
+                    }
+                    onStatusChanged: {
+                        console.log("🕐 Bar clock status changed to:", status);
+                        if (status === Loader.Ready) {
+                            console.log("   ✅ Clock loaded successfully");
+                            console.log("   item:", item);
+                        } else if (status === Loader.Error) {
+                            console.log("   ❌ Clock loading ERROR");
+                        }
+                    }
                 }
             }
+
             DelegateChoice {
                 roleValue: "statusIcons"
                 delegate: WrappedLoader {

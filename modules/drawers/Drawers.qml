@@ -17,7 +17,11 @@ Variants {
     Scope {
         id: scope
 
+        Component.onCompleted:{
+        console.log("TopbarConfig.persistent:", topbar.persistent);}
+
         required property ShellScreen modelData
+
         readonly property bool barDisabled: {
             const regexChecker = /^\^.*\$$/;
             for (const filter of Config.bar.excludedScreens) {
@@ -36,6 +40,7 @@ Variants {
         Exclusions {
             screen: scope.modelData
             bar: bar
+            topbar: topbar
         }
 
         StyledWindow {
@@ -70,9 +75,9 @@ Variants {
 
             mask: Region {
                 x: bar.implicitWidth + win.dragMaskPadding
-                y: Config.border.thickness + win.dragMaskPadding
+                y: Config.border.thickness + topbar.implicitHeight + win.dragMaskPadding
                 width: win.width - bar.implicitWidth - Config.border.thickness - win.dragMaskPadding * 2
-                height: win.height - Config.border.thickness * 2 - win.dragMaskPadding * 2
+                height: win.height - Config.border.thickness * 2 - topbar.implicitHeight - win.dragMaskPadding * 2
                 intersection: Intersection.Xor
 
                 regions: regions.instances
@@ -92,7 +97,7 @@ Variants {
                     required property Item modelData
 
                     x: modelData.x + bar.implicitWidth
-                    y: modelData.y + Config.border.thickness
+                    y: modelData.y + Config.border.thickness + topbar.implicitHeight
                     width: modelData.width
                     height: modelData.height
                     intersection: Intersection.Subtract
@@ -136,11 +141,13 @@ Variants {
 
                 Border {
                     bar: bar
+                    topbar: topbar
                 }
 
                 Backgrounds {
                     panels: panels
                     bar: bar
+                    topbar: topbar
                 }
             }
 
@@ -148,6 +155,7 @@ Variants {
                 id: visibilities
 
                 property bool bar
+                property bool topbar
                 property bool osd
                 property bool session
                 property bool launcher
@@ -158,34 +166,47 @@ Variants {
                 Component.onCompleted: Visibilities.load(scope.modelData, this)
             }
 
+            // TOPBAR - Déclarée en dehors de Interactions, au même niveau que l'Item contenant Border
+            TopbarWrapper {
+                id: topbar
+                screen: scope.modelData
+                visibilities: visibilities
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                z: 100  // Au-dessus de tout
+
+                Component.onCompleted: Visibilities.bars.set(scope.modelData, this)
+            }
+
+            // BAR - Reste dans Interactions comme avant
+            BarWrapper {
+                id: bar
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                screen: scope.modelData
+                visibilities: visibilities
+                popouts: panels.popouts
+                z: 100  // Au-dessus de tout
+
+                Component.onCompleted: Visibilities.bars.set(scope.modelData, this)
+            }
+
             Interactions {
                 screen: scope.modelData
                 popouts: panels.popouts
                 visibilities: visibilities
                 panels: panels
-                bar: bar
+                topbar: topbar// Référence la topbar définie au-dessus
+                bar: bar        // Référence la bar définie au-dessus
 
                 Panels {
                     id: panels
 
                     screen: scope.modelData
                     visibilities: visibilities
+                    topbar: topbar
                     bar: bar
-                }
-
-                BarWrapper {
-                    id: bar
-
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-
-                    screen: scope.modelData
-                    visibilities: visibilities
-                    popouts: panels.popouts
-
-                    disabled: scope.barDisabled
-
-                    Component.onCompleted: Visibilities.bars.set(scope.modelData, this)
                 }
             }
         }

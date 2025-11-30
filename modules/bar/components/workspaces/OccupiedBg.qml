@@ -64,8 +64,8 @@ Item {
             implicitWidth: Config.bar.sizes.innerWidth - Appearance.padding.small * 2 + 2
             implicitHeight: start && end ? end.y + end.size - start.y + 2 : 0
 
-            color: Colours.layer(Colours.palette.m3surfaceContainerHigh, 2)
-            radius: Appearance.rounding.full
+            color: Colours.layer(Config.style.workspaces.occupiedColor, 2)
+            radius: Config.style.workspaces.occupiedRadius
 
             scale: 0
             Component.onCompleted: scale = 1

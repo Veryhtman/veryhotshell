@@ -17,6 +17,7 @@ Item {
     required property ShellScreen screen
     required property PersistentProperties visibilities
     required property Item bar
+    required property Item topbar
 
     readonly property alias osd: osd
     readonly property alias notifications: notifications
@@ -31,6 +32,7 @@ Item {
     anchors.fill: parent
     anchors.margins: Config.border.thickness
     anchors.leftMargin: bar.implicitWidth
+    anchors.topMargin: Config.border.thickness + topbar.implicitHeight
 
     Osd.Wrapper {
         id: osd

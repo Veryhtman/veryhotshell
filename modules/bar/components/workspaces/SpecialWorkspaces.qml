@@ -31,7 +31,7 @@ Item {
 
         Rectangle {
             anchors.fill: parent
-            radius: Appearance.rounding.full
+            radius: Config.style.workspaces.specialRadius
 
             gradient: Gradient {
                 orientation: Gradient.Vertical
@@ -74,7 +74,7 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
 
-            radius: Appearance.rounding.full
+            radius: Config.style.workspaces.specialRadius
             implicitHeight: parent.height / 2
             opacity: view.contentY < view.contentHeight - parent.height + Appearance.padding.small ? 0 : 1
 
@@ -234,7 +234,7 @@ Item {
 
                             grade: 0
                             text: Icons.getAppCategoryIcon(modelData.lastIpcObject.class, "terminal")
-                            color: Colours.palette.m3onSurfaceVariant
+                            color: Config.style.workspaces.specialColor
                         }
                     }
                 }
@@ -305,13 +305,13 @@ Item {
                 y: (view.currentItem?.y ?? 0) - view.contentY
                 implicitHeight: view.currentItem?.size ?? 0
 
-                color: Colours.palette.m3tertiary
-                radius: Appearance.rounding.full
+                color: Config.style.workspaces.specialIndicatorColor
+                radius: Config.style.workspaces.specialIndicatorRadius
 
                 Colouriser {
                     source: view
-                    sourceColor: Colours.palette.m3onSurface
-                    colorizationColor: Colours.palette.m3onTertiary
+                    sourceColor: Config.style.workspaces.colouriserSourceColor
+                    colorizationColor: Config.style.workspaces.specialIndicatorColouriser
 
                     anchors.horizontalCenter: parent.horizontalCenter
 

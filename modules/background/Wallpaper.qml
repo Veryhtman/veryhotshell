@@ -37,7 +37,7 @@ Item {
         asynchronous: true
 
         sourceComponent: StyledRect {
-            color: Colours.palette.m3surfaceContainer
+            color: Config.style.wallpaper.containerColor
 
             Row {
                 anchors.centerIn: parent
@@ -45,8 +45,8 @@ Item {
 
                 MaterialIcon {
                     text: "sentiment_stressed"
-                    color: Colours.palette.m3onSurfaceVariant
-                    font.pointSize: Appearance.font.size.extraLarge * 5
+                    color: Config.style.wallpaper.textColor
+                    font.pointSize: Config.style.wallpaper.textSize * 5
                 }
 
                 Column {
@@ -55,17 +55,17 @@ Item {
 
                     StyledText {
                         text: qsTr("Wallpaper missing?")
-                        color: Colours.palette.m3onSurfaceVariant
-                        font.pointSize: Appearance.font.size.extraLarge * 2
-                        font.bold: true
+                        color: Config.style.wallpaper.textColor
+                        font.pointSize: Config.style.wallpaper.textSize * 2
+                        font.bold: Config.style.wallpaper.textBold
                     }
 
                     StyledRect {
                         implicitWidth: selectWallText.implicitWidth + Appearance.padding.large * 2
                         implicitHeight: selectWallText.implicitHeight + Appearance.padding.small * 2
 
-                        radius: Appearance.rounding.full
-                        color: Colours.palette.m3primary
+                        radius: Config.style.wallpaper.selectorContainerRadius
+                        color: Config.style.wallpaper.selectorContainerColor
 
                         FileDialog {
                             id: dialog
@@ -78,7 +78,7 @@ Item {
 
                         StateLayer {
                             radius: parent.radius
-                            color: Colours.palette.m3onPrimary
+                            color: Config.style.wallpaper.selectorContainerBackgroundColor
 
                             function onClicked(): void {
                                 dialog.open();
@@ -91,8 +91,8 @@ Item {
                             anchors.centerIn: parent
 
                             text: qsTr("Set it now!")
-                            color: Colours.palette.m3onPrimary
-                            font.pointSize: Appearance.font.size.large
+                            color: Config.style.wallpaper.selectorContainerTextColor_1
+                            font.pointSize: Config.style.wallpaper.selectorContainerTextSize_1
                         }
                     }
                 }

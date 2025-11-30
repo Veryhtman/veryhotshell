@@ -25,27 +25,27 @@ Item {
             Layout.bottomMargin: -(font.pointSize * 0.4)
             Layout.alignment: Qt.AlignHCenter
             text: root.timeComponents[0]
-            color: Colours.palette.m3secondary
-            font.pointSize: Appearance.font.size.extraLarge
-            font.family: Appearance.font.family.clock
+            color: Config.style.datetime.dash_hourTextColor
+            font.pointSize: Config.style.datetime.dash_hourTextSize
+            font.family: Config.style.datetime.dash_hourTextFont
             font.weight: 600
         }
 
         StyledText {
             Layout.alignment: Qt.AlignHCenter
             text: "•••"
-            color: Colours.palette.m3primary
-            font.pointSize: Appearance.font.size.extraLarge * 0.9
-            font.family: Appearance.font.family.clock
+            color: Config.style.datetime.dash_separatorTextColor
+            font.pointSize: Config.style.datetime.dash_separatorTextSize * 0.9
+            font.family: Config.style.datetime.dash_separatorTextFont
         }
 
         StyledText {
             Layout.topMargin: -(font.pointSize * 0.4)
             Layout.alignment: Qt.AlignHCenter
             text: root.timeComponents[1]
-            color: Colours.palette.m3secondary
-            font.pointSize: Appearance.font.size.extraLarge
-            font.family: Appearance.font.family.clock
+            color: Config.style.datetime.dash_minuteTextColor
+            font.pointSize: Config.style.datetime.dash_minuteTextSize
+            font.family: Config.style.datetime.dash_minuteTextFont
             font.weight: 600
         }
 
@@ -58,9 +58,9 @@ Item {
 
             sourceComponent: StyledText {
                 text: root.timeComponents[2] ?? ""
-                color: Colours.palette.m3primary
-                font.pointSize: Appearance.font.size.large
-                font.family: Appearance.font.family.clock
+                color: Config.style.datetime.dash_twelveHourTextColor
+                font.pointSize: Config.style.datetime.dash_twelveHourTextSize
+                font.family: Config.style.datetime.dash_twelveHourTextFont
                 font.weight: 600
             }
         }

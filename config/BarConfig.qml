@@ -17,7 +17,7 @@ JsonObject {
     property list<var> entries: [
         {
             id: "logo",
-            enabled: true
+            enabled: false
         },
         {
             id: "workspaces",

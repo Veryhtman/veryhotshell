@@ -12,8 +12,8 @@ Item {
 
         anchors.centerIn: parent
         text: Time.format(Config.services.useTwelveHourClock ? "hh:mm:ss A" : "hh:mm:ss")
-        font.family: Appearance.font.family.clock
-        font.pointSize: Appearance.font.size.extraLarge
-        font.bold: true
+        font.family: Config.style.desktopClock.textFont
+        font.pointSize: Config.style.desktopClock.textSize
+        font.bold: Config.style.desktopClock.textBold
     }
 }

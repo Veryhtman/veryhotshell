@@ -48,7 +48,7 @@ ColumnLayout {
             const activeLabel = Config.bar.workspaces.activeLabel || (root.isOccupied ? occupiedLabel : label);
             return root.activeWsId === root.ws ? activeLabel : root.isOccupied ? occupiedLabel : label;
         }
-        color: Config.bar.workspaces.occupiedBg || root.isOccupied || root.activeWsId === root.ws ? Colours.palette.m3onSurface : Colours.layer(Colours.palette.m3outlineVariant, 2)
+        color: Config.bar.workspaces.occupiedBg || root.isOccupied || root.activeWsId === root.ws ? Config.style.workspaces.activeIndicatorOn : Colours.layer(Config.style.workspaces.activeIndicatorOff, 2)
         verticalAlignment: Qt.AlignVCenter
     }
 
@@ -96,7 +96,7 @@ ColumnLayout {
 
                     grade: 0
                     text: Icons.getAppCategoryIcon(modelData.lastIpcObject.class, "terminal")
-                    color: Colours.palette.m3onSurfaceVariant
+                    color: Config.style.workspaces.mainColor
                 }
             }
         }

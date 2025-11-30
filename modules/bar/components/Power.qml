@@ -33,8 +33,8 @@ Item {
         anchors.horizontalCenterOffset: -1
 
         text: "power_settings_new"
-        color: Colours.palette.m3error
-        font.bold: true
-        font.pointSize: Appearance.font.size.normal
+        color: Config.style.power.mainColor
+        font.bold: Config.style.power.bold
+        font.pointSize: Config.style.power.size
     }
 }
